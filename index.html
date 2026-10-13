@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Sorreta, Austin</title>
+    <meta
+      name="description"
+      content="Portfolio of Austin Sorreta, an Information Technology student interested in web development and interface design."
+    />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch (error) {
+        console.error("Unable to read the saved theme preference.", error);
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header glass">
+      <nav class="nav container" aria-label="Primary navigation">
+        <a href="#home" class="logo" aria-label="Home">
+          <span class="logo-mark" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="logo-text">Austin</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="themeToggle" class="theme-toggle glass" type="button" aria-label="Switch to light theme">
+            <i class="icon-sun fa-solid fa-sun" aria-hidden="true"></i>
+            <i class="icon-moon fa-solid fa-moon" aria-hidden="true"></i>
+          </button>
+          <button
+            id="menuToggle"
+            class="menu-toggle glass"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="navLinks"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="home" class="hero section container">
+        <div class="hero-content">
+          <p class="hero-greet reveal">Information Technology student</p>
+          <h1 class="hero-name reveal">Austin <span class="accent">Sorreta</span></h1>
+          <h2 class="hero-role reveal">
+            Web development <span aria-hidden="true">·</span> UI/UX
+          </h2>
+          <p class="hero-desc reveal">
+            I study information technology at ICCT Colleges and enjoy exploring web development, interface design, and digital art.
+          </p>
+
+          <div class="hero-buttons reveal">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-ghost">Contact Me</a>
+          </div>
+
+          <div class="hero-socials reveal">
+            <a href="https://github.com/saustinjhon" class="social glass" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://facebook.com/saustinjhon" class="social glass" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://linkedin.com/in/saustinjhon" class="social glass" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="profile-pic glass">
+            <img src="images/profile.jpg" alt="Portrait of Austin Sorreta" />
+          </div>
+          <p class="visual-caption">Curious by nature. Building one project at a time.</p>
+        </div>
+      </section>
+
+      <section id="about" class="section container">
+        <h2 class="section-title reveal">A little <span class="accent">about me</span></h2>
+
+        <div class="about-grid">
+          <div class="profile-panel glass reveal">
+            <img src="images/profile.jpg" alt="Portrait of Austin Sorreta" />
+          </div>
+
+          <div class="info-column">
+            <article class="glass card reveal">
+              <h3>Who I Am</h3>
+              <p>
+                I'm an aspiring web developer and designer. I like turning ideas into clear, useful interfaces and learning how each part works.
+              </p>
+            </article>
+
+            <article class="glass card reveal">
+              <h3>Education</h3>
+              <p>
+                BS in Information Technology<br />
+                ICCT Colleges
+              </p>
+            </article>
+
+            <article class="glass card reveal">
+              <h3>Interests</h3>
+              <p>
+                UI/UX design, web development, and digital art.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section container">
+        <h2 class="section-title reveal">Tools I <span class="accent">work with</span></h2>
+
+        <div class="skills-grid">
+          <article class="glass card skill-card reveal">
+            <h3>HTML5</h3>
+            <p>Structure and semantic markup</p>
+          </article>
+
+          <article class="glass card skill-card reveal">
+            <h3>CSS3</h3>
+            <p>Responsive layouts and styling</p>
+          </article>
+
+          <article class="glass card skill-card reveal">
+            <h3>JavaScript</h3>
+            <p>Interactive web experiences</p>
+          </article>
+
+          <article class="glass card skill-card reveal">
+            <h3>Python</h3>
+            <p>Programming fundamentals</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section container">
+        <h2 class="section-title reveal">Selected <span class="accent">projects</span></h2>
+
+        <div class="projects-grid">
+          <article class="glass card project-card reveal">
+            <div class="project-thumb" aria-hidden="true"><i class="fa-solid fa-globe"></i></div>
+            <h3>Portfolio Website</h3>
+            <p>A responsive personal portfolio built with HTML, CSS, and JavaScript.</p>
+            <p class="project-type">Personal portfolio</p>
+          </article>
+
+          <article class="glass card project-card reveal">
+            <div class="project-thumb" aria-hidden="true"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3>Mobile UI Concept</h3>
+            <p>A clean mobile interface concept focusing on accessibility and flow.</p>
+            <p class="project-type">Interface concept</p>
+          </article>
+
+          <article class="glass card project-card reveal">
+            <div class="project-thumb" aria-hidden="true"><i class="fa-solid fa-calendar-check"></i></div>
+            <h3>Student Planner</h3>
+            <p>A dashboard concept for keeping class schedules, assignments, and deadlines organized.</p>
+            <p class="project-type">Dashboard concept</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section container">
+        <h2 class="section-title reveal">Have a project in mind? <span class="accent">Let's talk.</span></h2>
+
+        <div class="contact-intro">
+          <p>Send a note and your email app will prepare a message to <a href="mailto:saustinjhon@gmail.com">saustinjhon@gmail.com</a>.</p>
+        </div>
+        <form class="glass contact-form reveal" id="contactForm">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Juan Dela Cruz" required />
+            </div>
+            <div class="field">
+              <label for="email">Your email</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="juandelacruz@example.com" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Your message</label>
+            <textarea id="message" name="message" rows="5" placeholder="What would you like to talk about?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Prepare email <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer glass">
+      <div class="container footer-inner">
+        <p>© 2026 Austin Sorreta · Built with HTML, CSS &amp; JavaScript</p>
+        <a href="#home" class="back-top" id="backTop"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Back to top</a>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
