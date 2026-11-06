@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Campus Connect, a campus-events interface designed by Austin Sorreta in Figma." />
+    <title>Campus Connect | Austin Sorreta</title>
+    <link rel="stylesheet" href="project-pages.css" />
+  </head>
+  <body>
+    <div class="demo-wrap">
+      <nav class="demo-nav" aria-label="Project navigation">
+        <a class="demo-brand" href="../index.html">Austin Sorreta</a>
+        <a href="../index.html#projects">Back to portfolio</a>
+      </nav>
+
+      <main class="demo-section">
+        <p class="demo-eyebrow">My interface design · Figma · Built by Austin Sorreta</p>
+        <h1>Campus Connect</h1>
+        <p>A campus-events interface I designed for students to find activities, save events, and move between sections with ease.</p>
+
+        <section class="mobile-shell" aria-label="Campus Connect mobile interface">
+          <div class="mobile-device-bar"><span></span><span>9:41</span><span>●●●</span></div>
+          <header class="mobile-header">
+            <h2>Campus Connect</h2>
+            <button class="mobile-avatar" type="button" aria-label="Student profile">AS</button>
+          </header>
+
+          <div class="mobile-welcome">
+            <p class="mobile-date">MADE FOR THE CAMPUS COMMUNITY</p>
+            <h2>Good morning,<br />Austin <span aria-hidden="true">✦</span></h2>
+            <p>Your campus, in one place.</p>
+          </div>
+
+          <div class="mobile-search" aria-label="Search events"><span aria-hidden="true">⌕</span> Search events</div>
+          <div class="mobile-section-heading"><h3>Upcoming events</h3><span>See all</span></div>
+          <div class="mobile-tabs" role="group" aria-label="Filter campus events">
+            <button class="mobile-tab" type="button" data-filter="all" aria-pressed="true">All events</button>
+            <button class="mobile-tab" type="button" data-filter="saved" aria-pressed="false">Saved</button>
+          </div>
+
+          <div id="eventList">
+            <article class="mobile-event" data-event="webinar">
+              <span class="event-date">NOV<br />10</span>
+              <div>
+                <div class="event-title">Portfolio Feedback Circle</div>
+                <p><span aria-hidden="true">◷</span> 10:00 AM · Computer Lab</p>
+              </div>
+              <button class="demo-button event-action" type="button" aria-pressed="false">Save event</button>
+            </article>
+
+            <article class="mobile-event" data-event="club">
+              <span class="event-date">NOV<br />12</span>
+              <div>
+                <div class="event-title">BSIT Peer Study Session</div>
+                <p><span aria-hidden="true">◷</span> 1:30 PM · Student Center</p>
+              </div>
+              <button class="demo-button event-action" type="button" aria-pressed="false">Save event</button>
+            </article>
+          </div>
+
+          <p class="mobile-empty" id="emptyState">No saved events yet. Save an event to see it here.</p>
+          <nav class="mobile-bottom-nav" aria-label="Campus Connect sections">
+            <span class="active"><span aria-hidden="true">⌂</span> Home</span>
+            <span><span aria-hidden="true">▦</span> Explore</span>
+            <span><span aria-hidden="true">♡</span> Saved</span>
+            <span><span aria-hidden="true">○</span> Profile</span>
+          </nav>
+        </section>
+      </main>
+
+      <footer class="demo-footer">Designed in Figma · Save an event and try the Saved filter.</footer>
+    </div>
+
+    <script>
+      const eventCards = [...document.querySelectorAll(".mobile-event")];
+      const filterButtons = [...document.querySelectorAll(".mobile-tab")];
+      const emptyState = document.getElementById("emptyState");
+      let activeFilter = "all";
+
+      function updateEvents() {
+        let visibleCount = 0;
+        eventCards.forEach((card) => {
+          const isSaved = card.querySelector(".event-action").getAttribute("aria-pressed") === "true";
+          const isVisible = activeFilter === "all" || isSaved;
+          card.hidden = !isVisible;
+          if (isVisible) visibleCount += 1;
+        });
+        emptyState.style.display = visibleCount === 0 ? "block" : "none";
+      }
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          activeFilter = button.dataset.filter;
+          filterButtons.forEach((tab) => tab.setAttribute("aria-pressed", String(tab === button)));
+          updateEvents();
+        });
+      });
+
+      document.querySelectorAll(".event-action").forEach((button) => {
+        button.addEventListener("click", () => {
+          const isSaved = button.getAttribute("aria-pressed") !== "true";
+          button.setAttribute("aria-pressed", String(isSaved));
+          button.textContent = isSaved ? "Saved" : "Save event";
+          updateEvents();
+        });
+      });
+    </script>
+  </body>
+</html>

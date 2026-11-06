@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Sorreta, Austin</title>
+    <meta
+      name="description"
+      content="Portfolio of Austin Sorreta, an Information Technology student interested in web development and interface design."
+    />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch (error) {
+        console.error("Unable to read the saved theme preference.", error);
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header glass">
+      <nav class="nav container" aria-label="Primary navigation">
+        <a href="#home" class="logo" aria-label="Home">
+          <span class="logo-mark" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="logo-text">Austin</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#tech-stack" class="nav-link">Tech Stack</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="themeToggle" class="theme-toggle glass" type="button" aria-label="Switch to light theme">
+            <i class="icon-sun fa-solid fa-sun" aria-hidden="true"></i>
+            <i class="icon-moon fa-solid fa-moon" aria-hidden="true"></i>
+          </button>
+          <button
+            id="menuToggle"
+            class="menu-toggle glass"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="navLinks"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="home" class="hero section container">
+        <div class="hero-content">
+          <p class="hero-greet reveal">Information Technology student</p>
+          <h1 class="hero-name reveal">Austin <span class="accent">Sorreta</span></h1>
+          <h2 class="hero-role reveal">
+            Web development <span aria-hidden="true">·</span> UI/UX
+          </h2>
+          <p class="hero-desc reveal">
+            I'm a second-year BSIT student at ICCT Colleges, building my skills in web development and UI/UX design one project at a time.
+          </p>
+
+          <div class="hero-buttons reveal">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-ghost">Contact Me</a>
+          </div>
+
+          <div class="hero-socials reveal">
+            <a href="https://github.com/saustinjhon" class="social glass" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://facebook.com/saustinjhon" class="social glass" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://linkedin.com/in/saustinjhon" class="social glass" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="profile-pic glass">
+            <img src="images/profile.jpg" alt="Portrait of Austin Sorreta" />
+          </div>
+          <p class="visual-caption">Curious by nature. Creating thoughtful web experiences.</p>
+        </div>
+      </section>
+
+      <section id="about" class="section container">
+        <p class="section-kicker reveal"><span>01</span> About</p>
+        <h2 class="section-title reveal">A little <span class="accent">about me</span></h2>
+
+        <div class="about-grid">
+          <div class="profile-panel glass reveal">
+            <img src="images/profile.jpg" alt="Portrait of Austin Sorreta" />
+            <div class="profile-caption">
+              <span class="profile-caption-mark" aria-hidden="true">AS</span>
+              <span><strong>Austin Sorreta</strong><small>BSIT Student · ICCT Colleges</small></span>
+            </div>
+          </div>
+
+          <div class="info-column">
+            <article class="glass card reveal">
+              <h3>Who I Am</h3>
+              <p>
+                I'm a second-year BSIT student who enjoys web development and UI/UX design. I like turning ideas into clear, useful interfaces and learning how each part works.
+              </p>
+            </article>
+
+            <article class="glass card reveal">
+              <h3>My Journey</h3>
+              <p>
+                College is where I'm building my foundation in information technology. Through coursework and hands-on projects, I'm learning to plan, design, and develop for the web.
+              </p>
+            </article>
+
+            <article class="glass card what-i-do-card reveal">
+              <h3>What I Do</h3>
+              <p>
+                I build responsive, user-friendly interfaces with clear layouts and practical interactions, while paying attention to how people navigate each page.
+              </p>
+            </article>
+
+            <article class="glass card reveal">
+              <h3>What I'm Learning</h3>
+              <p>
+                I'm developing my skills in HTML, CSS, JavaScript, and Python through college coursework, self-study, and projects.
+              </p>
+            </article>
+
+            <article class="glass card education-card reveal">
+              <h3>Education</h3>
+              <div class="education-entry">
+                <h4>BS in Information Technology</h4>
+                <p class="education-meta">ICCT Colleges <span aria-hidden="true">·</span> 2nd Year</p>
+                <p class="education-meta">Expected Graduation: 2028</p>
+                <p class="education-meta">Focused on web development and UI/UX design.</p>
+              </div>
+
+              <div class="education-entry">
+                <h4>Relevant Coursework</h4>
+                <ul class="coursework-list">
+                  <li>Web Development</li>
+                  <li>UI/UX Design</li>
+                  <li>Database Management</li>
+                  <li>Object-Oriented Programming</li>
+                </ul>
+              </div>
+
+              <div class="education-entry">
+                <h4>Previous Education &amp; Certifications</h4>
+                <p class="education-meta">ICT Strand Graduate — UINHS (Ungos Integrated National High School), With Honors</p>
+                <p class="education-meta">TESDA National Certificate II (NC II) — Computer Systems Servicing</p>
+                <a class="certificate-link" href="images/NCII.png" target="_blank" rel="noopener noreferrer">
+                  <img src="images/NCII.png" alt="TESDA National Certificate II in Computer Systems Servicing" />
+                  <span>View NC II certificate <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+                </a>
+              </div>
+            </article>
+
+            <article class="glass card academic-card reveal">
+              <h3>Academic Experience</h3>
+              <ul class="academic-list">
+                <li>I build academic web projects that combine coding, planning, and teamwork.</li>
+                <li>Strengthen JavaScript and responsive design through tutorials and hands-on practice.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section container horizontal-scroll-section">
+        <div class="horizontal-scroll-sticky">
+          <div class="horizontal-scroll-heading">
+            <div>
+              <p class="section-kicker reveal"><span>02</span> Skills</p>
+              <h2 class="section-title reveal">What I <span class="accent">can do</span></h2>
+            </div>
+            <p class="horizontal-scroll-hint"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Scroll down to explore</p>
+          </div>
+          <p class="skills-intro reveal">I’m building practical skills through coursework, self-study, and hands-on projects.</p>
+          <div class="horizontal-scroll-viewport" tabindex="0" aria-label="Skills in frontend, backend, database, and design workflows. Scroll down to move through the cards.">
+            <div class="skills-grid horizontal-scroll-track">
+              <article class="glass card skill-card reveal">
+                <h3><i class="fa-solid fa-laptop-code skill-icon frontend-icon" aria-hidden="true"></i>Frontend</h3>
+                <p>Creating semantic page structures, responsive layouts, and clear interactions for the web.</p>
+              </article>
+
+              <article class="glass card skill-card reveal">
+                <h3><i class="fa-solid fa-server skill-icon backend-icon" aria-hidden="true"></i>Backend</h3>
+                <p>Developing programming logic and learning the foundations of server-side development.</p>
+              </article>
+
+              <article class="glass card skill-card reveal">
+                <h3><i class="fa-solid fa-database skill-icon database-icon" aria-hidden="true"></i>Database</h3>
+                <p>Learning relational data organization, SQL fundamentals, and database management.</p>
+              </article>
+
+              <article class="glass card skill-card reveal">
+                <h3><i class="fa-solid fa-screwdriver-wrench skill-icon tools-icon" aria-hidden="true"></i>Design &amp; Workflow</h3>
+                <p>Planning user flows, shaping interface layouts, and keeping coding work organized.</p>
+              </article>
+            </div>
+          </div>
+          <div class="horizontal-scroll-status">
+            <div class="horizontal-scroll-progress" role="progressbar" aria-label="Skills carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span></span>
+            </div>
+            <span class="horizontal-scroll-count" aria-live="polite">01 / 04</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="tech-stack" class="section container horizontal-scroll-section">
+        <div class="horizontal-scroll-sticky">
+          <div class="horizontal-scroll-heading">
+            <div>
+              <p class="section-kicker reveal"><span>03</span> Technologies &amp; Tools</p>
+              <h2 class="section-title reveal">My <span class="accent">tech stack</span></h2>
+            </div>
+            <p class="horizontal-scroll-hint"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Scroll down to explore</p>
+          </div>
+          <p class="skills-intro reveal">Each technology and tool has its own card. Keep scrolling to see them zoom in one by one.</p>
+          <div class="horizontal-scroll-viewport" tabindex="0" aria-label="Individual technology and tool cards. Scroll down to move through the cards.">
+            <div class="skills-grid horizontal-scroll-track">
+              <article class="glass card skill-card tech-stack-card reveal">
+                <span class="skill-category">Frontend</span>
+                <h3><i class="fa-brands fa-html5 skill-icon html-icon" aria-hidden="true"></i>HTML5</h3>
+                <p>Semantic page structure</p>
+              </article>
+              <article class="glass card skill-card tech-stack-card reveal">
+                <span class="skill-category">Frontend</span>
+                <h3><i class="fa-brands fa-css3-alt skill-icon css-icon" aria-hidden="true"></i>CSS3</h3>
+                <p>Responsive layouts and styling</p>
+              </article>
+              <article class="glass card skill-card tech-stack-card reveal">
+                <span class="skill-category">Frontend</span>
+                <h3><i class="fa-brands fa-js skill-icon js-icon" aria-hidden="true"></i>JavaScript</h3>
+                <p>Interactive web features</p>
+              </article>
+              <article class="glass card skill-card tech-stack-card reveal">
+                <span class="skill-category">Backend</span>
+                <h3><i class="fa-brands fa-python skill-icon python-icon" aria-hidden="true"></i>Python</h3>
+                <p>Programming fundamentals</p>
+              </article>
+              <article class="glass card skill-card tech-stack-card reveal">
+                <span class="skill-category">Database</span>
+                <h3><i class="fa-solid fa-database skill-icon database-icon" aria-hidden="true"></i>MySQL</h3>
+                <p>Relational database fundamentals</p>
+              </article>
+              <article class="glass card skill-card tech-stack-card reveal">
+                <span class="skill-category">Design Tool</span>
+                <h3><i class="fa-brands fa-figma skill-icon figma-skill-icon" aria-hidden="true"></i>Figma</h3>
+                <p>UI design and prototyping</p>
+              </article>
+              <article class="glass card skill-card tech-stack-card reveal">
+                <span class="skill-category">Version Control</span>
+                <h3><i class="fa-brands fa-git-alt skill-icon git-icon" aria-hidden="true"></i>Git</h3>
+                <p>Version control basics</p>
+              </article>
+              <article class="glass card skill-card tech-stack-card reveal">
+                <span class="skill-category">Code Editor</span>
+                <h3><i class="fa-solid fa-code skill-icon vscode-icon" aria-hidden="true"></i>VS Code</h3>
+                <p>Code editing and debugging</p>
+              </article>
+            </div>
+          </div>
+          <div class="horizontal-scroll-status">
+            <div class="horizontal-scroll-progress" role="progressbar" aria-label="Tech stack carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span></span>
+            </div>
+            <span class="horizontal-scroll-count" aria-live="polite">01 / 08</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section container horizontal-scroll-section">
+        <div class="horizontal-scroll-sticky">
+          <div class="horizontal-scroll-heading">
+            <div>
+              <p class="section-kicker reveal"><span>04</span> Selected Work</p>
+              <h2 class="section-title reveal">Selected <span class="accent">projects</span></h2>
+            </div>
+            <p class="horizontal-scroll-hint"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Scroll down to explore</p>
+          </div>
+
+        <ul class="project-tool-legend reveal" aria-label="Languages and tools used across my projects and coursework">
+          <li><span class="tech-mark tech-html" aria-hidden="true">5</span>HTML5</li>
+          <li><span class="tech-mark tech-css" aria-hidden="true">3</span>CSS3</li>
+          <li><span class="tech-mark tech-js" aria-hidden="true">JS</span>JavaScript</li>
+          <li><span class="tech-mark tech-python" aria-hidden="true">Py</span>Python</li>
+          <li><span class="tech-mark tech-figma" aria-hidden="true">F</span>Figma</li>
+        </ul>
+
+        <!-- Inline SVG project icons keep the cards self-contained and fast to load. -->
+        <div class="horizontal-scroll-viewport" tabindex="0" aria-label="Project cards. Scroll down to move through the cards.">
+        <div class="projects-grid horizontal-scroll-track">
+          <article class="glass card project-card reveal">
+            <a class="project-icon-link" href="projects/portfolio.html" target="_blank" rel="noopener noreferrer" aria-label="Open Portfolio Website">
+              <span class="project-icon-tile portfolio-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="5" y="7" width="38" height="34" rx="5" />
+                  <path d="M5 16h38M12 11.5h.02M17 11.5h.02M22 11.5h.02M12 23h10m-10 6h16m-16 6h12" />
+                  <path d="m31 24 6 6-6 6" />
+                </svg>
+              </span>
+            </a>
+            <h3>Personal Portfolio Website</h3>
+            <p>A responsive, semantic portfolio for sharing my background and work. Building it helped me practice accessible structure and responsive design.</p>
+            <ul class="project-highlights" aria-label="Portfolio project highlights">
+              <li>Responsive sections and clear navigation</li>
+              <li>Practiced semantic markup and layout</li>
+            </ul>
+            <div class="project-stack">
+              <span class="stack-label">Tech Stack</span>
+              <ul class="stack-list" aria-label="Portfolio Website tech stack">
+                <li><span class="tech-mark tech-html" aria-hidden="true">5</span>HTML5</li>
+                <li><span class="tech-mark tech-css" aria-hidden="true">3</span>CSS3</li>
+                <li><span class="tech-mark tech-js" aria-hidden="true">JS</span>JavaScript</li>
+              </ul>
+            </div>
+            <a class="btn btn-ghost project-button" href="projects/portfolio.html" target="_blank" rel="noopener noreferrer">
+              View Project
+              <svg class="external-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 4h6v6m-1-5-9 9" />
+                <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />
+              </svg>
+            </a>
+          </article>
+
+          <article class="glass card project-card reveal">
+            <a class="project-icon-link" href="projects/campus-connect.html" target="_blank" rel="noopener noreferrer" aria-label="Open Campus Connect">
+              <span class="project-icon-tile mobile-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="13" y="4" width="22" height="40" rx="5" />
+                  <path d="M20 9h8m-11 7h16v18H17z" />
+                  <path d="M21 20h8m-8 5h8m-8 5h5" />
+                  <circle cx="24" cy="38" r="1" />
+                </svg>
+              </span>
+            </a>
+            <h3>Campus Connect</h3>
+            <p>A Figma-designed campus-events interface for discovering and saving activities. I practiced accessible layouts and clear user flows.</p>
+            <ul class="project-highlights" aria-label="Campus Connect project highlights">
+              <li>Readable event cards and saved-events flow</li>
+              <li>Practiced user-flow design in Figma</li>
+            </ul>
+            <div class="project-stack">
+              <span class="stack-label">Tech Stack</span>
+              <ul class="stack-list" aria-label="Campus Connect tools">
+                <li><span class="tech-mark tech-figma" aria-hidden="true">F</span>Figma</li>
+              </ul>
+            </div>
+            <a class="btn btn-ghost project-button" href="projects/campus-connect.html" target="_blank" rel="noopener noreferrer">
+              View Project
+              <svg class="external-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 4h6v6m-1-5-9 9" />
+                <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />
+              </svg>
+            </a>
+          </article>
+
+          <article class="glass card project-card reveal">
+            <a class="project-icon-link" href="projects/student-planner.html" target="_blank" rel="noopener noreferrer" aria-label="Open Student Planner">
+              <span class="project-icon-tile planner-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="6" y="9" width="36" height="33" rx="5" />
+                  <path d="M15 5v8m18-8v8M6 18h36" />
+                  <path d="m13 26 2 2 4-4m3 3h10m-19 8 2 2 4-4m3 3h10" />
+                </svg>
+              </span>
+            </a>
+            <h3>Student Planner</h3>
+            <p>A dashboard for organizing classes, tasks, and deadlines. Building its interactive task list helped me practice information architecture.</p>
+            <ul class="project-highlights" aria-label="Student Planner project highlights">
+              <li>Add, complete, and save tasks</li>
+              <li>Practiced information architecture</li>
+            </ul>
+            <div class="project-stack">
+              <span class="stack-label">Tech Stack</span>
+              <ul class="stack-list" aria-label="Student Planner tech stack">
+                <li><span class="tech-mark tech-html" aria-hidden="true">5</span>HTML5</li>
+                <li><span class="tech-mark tech-css" aria-hidden="true">3</span>CSS3</li>
+                <li><span class="tech-mark tech-js" aria-hidden="true">JS</span>JavaScript</li>
+              </ul>
+            </div>
+            <a class="btn btn-ghost project-button" href="projects/student-planner.html" target="_blank" rel="noopener noreferrer">
+              View Project
+              <svg class="external-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 4h6v6m-1-5-9 9" />
+                <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />
+              </svg>
+            </a>
+          </article>
+
+          <article class="glass card project-card reveal">
+            <a class="project-icon-link" href="projects/campus-calendar.html" target="_blank" rel="noopener noreferrer" aria-label="Open Calendar">
+              <span class="project-icon-tile calendar-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="6" y="9" width="36" height="33" rx="5" />
+                  <path d="M15 5v8m18-8v8M6 18h36" />
+                  <path d="M14 25h.02m10 0h.02m10 0h.02M14 33h.02m10 0h.02m10 0h.02" />
+                  <circle cx="24" cy="25" r="3" />
+                </svg>
+              </span>
+            </a>
+            <h3>Calendar</h3>
+            <p>A monthly calendar for portfolio reviews, BSIT study sessions, and project reminders.</p>
+            <div class="project-stack">
+              <span class="stack-label">Tech Stack</span>
+              <ul class="stack-list" aria-label="Calendar tech stack">
+                <li><span class="tech-mark tech-html" aria-hidden="true">5</span>HTML5</li>
+                <li><span class="tech-mark tech-css" aria-hidden="true">3</span>CSS3</li>
+                <li><span class="tech-mark tech-js" aria-hidden="true">JS</span>JavaScript</li>
+              </ul>
+            </div>
+            <a class="btn btn-ghost project-button" href="projects/campus-calendar.html" target="_blank" rel="noopener noreferrer">
+              View Project
+              <svg class="external-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 4h6v6m-1-5-9 9" />
+                <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />
+              </svg>
+            </a>
+          </article>
+
+          <article class="glass card project-card reveal">
+            <a class="project-icon-link" href="projects/calculator.html" target="_blank" rel="noopener noreferrer" aria-label="Open Calculator">
+              <span class="project-icon-tile calculator-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="9" y="4" width="30" height="40" rx="6" />
+                  <rect x="14" y="10" width="20" height="9" rx="2" />
+                  <path d="M15 26h.02m9 0h.02m9 0h.02M15 33h.02m9 0h.02m9 0h.02M15 39h.02m9 0h.02m9 0h.02" />
+                  <path d="M22 24h4m-2-2v4" />
+                </svg>
+              </span>
+            </a>
+            <h3>Calculator</h3>
+            <p>A responsive calculator for basic arithmetic, with keyboard support and clear controls.</p>
+            <div class="project-stack">
+              <span class="stack-label">Tech Stack</span>
+              <ul class="stack-list" aria-label="Calculator tech stack">
+                <li><span class="tech-mark tech-html" aria-hidden="true">5</span>HTML5</li>
+                <li><span class="tech-mark tech-css" aria-hidden="true">3</span>CSS3</li>
+                <li><span class="tech-mark tech-js" aria-hidden="true">JS</span>JavaScript</li>
+              </ul>
+            </div>
+            <a class="btn btn-ghost project-button" href="projects/calculator.html" target="_blank" rel="noopener noreferrer">
+              View Project
+              <svg class="external-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 4h6v6m-1-5-9 9" />
+                <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />
+              </svg>
+            </a>
+          </article>
+        </div>
+        </div>
+        <div class="horizontal-scroll-status">
+          <div class="horizontal-scroll-progress" role="progressbar" aria-label="Projects carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span></span>
+          </div>
+          <span class="horizontal-scroll-count" aria-live="polite">01 / 05</span>
+        </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section container">
+        <p class="section-kicker reveal"><span>05</span> Get in touch</p>
+        <h2 class="section-title reveal">Let's build something <span class="accent">together.</span></h2>
+
+        <div class="contact-grid">
+          <aside class="contact-panel glass reveal">
+            <span class="contact-panel-mark" aria-hidden="true"><i class="fa-regular fa-paper-plane"></i></span>
+            <h3>Let's connect</h3>
+            <p>Recruiters, collaborators, and fellow creators are welcome to reach out about opportunities, projects, or simply to say hello. As a student, I'm open to internship and entry-level opportunities where I can learn and contribute.</p>
+            <a class="contact-email" href="mailto:saustinjhon@gmail.com">
+              <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+              saustinjhon@gmail.com
+            </a>
+            <div class="contact-availability"><span aria-hidden="true"></span> Open to internships and entry-level opportunities</div>
+          </aside>
+
+          <form class="glass contact-form reveal" id="contactForm">
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" autocomplete="name" placeholder="Juan Dela Cruz" required />
+              </div>
+              <div class="field">
+                <label for="email">Your email</label>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="juandelacruz@example.com" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="message">Your message</label>
+              <textarea id="message" name="message" rows="5" placeholder="What would you like to talk about?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Prepare email <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer glass">
+      <div class="container footer-inner">
+        <p>© 2026 Austin Sorreta · Built with HTML, CSS &amp; JavaScript</p>
+        <a href="#home" class="back-top" id="backTop"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Back to top</a>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

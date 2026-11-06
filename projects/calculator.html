@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A responsive calculator built by Austin Sorreta with keyboard support." />
+    <title>Calculator | Austin Sorreta</title>
+    <link rel="stylesheet" href="project-pages.css" />
+  </head>
+  <body>
+    <div class="demo-wrap">
+      <nav class="demo-nav" aria-label="Project navigation">
+        <a class="demo-brand" href="../index.html">Austin Sorreta</a>
+        <a href="../index.html#projects">Back to portfolio</a>
+      </nav>
+
+      <main class="demo-section calculator-page">
+        <p class="demo-eyebrow">Built from scratch · Calculator · HTML, CSS &amp; JavaScript</p>
+        <h1 class="calculator-page-title">Calculator</h1>
+        <p class="calculator-description">A clean, keyboard-friendly calculator for basic arithmetic.</p>
+
+        <section class="calculator" aria-label="Calculator">
+          <div class="calculator-display" aria-live="polite" aria-atomic="true">
+            <span class="calculator-expression" id="calculatorExpression"></span>
+            <output class="calculator-result" id="calculatorResult">0</output>
+          </div>
+          <div class="calculator-keys" id="calculatorKeys">
+            <button type="button" class="calculator-key utility" data-action="clear">AC</button>
+            <button type="button" class="calculator-key utility" data-action="sign">+/−</button>
+            <button type="button" class="calculator-key utility" data-action="percent">%</button>
+            <button type="button" class="calculator-key operator" data-operator="÷" aria-label="Divide">÷</button>
+            <button type="button" class="calculator-key" data-digit="7">7</button>
+            <button type="button" class="calculator-key" data-digit="8">8</button>
+            <button type="button" class="calculator-key" data-digit="9">9</button>
+            <button type="button" class="calculator-key operator" data-operator="×" aria-label="Multiply">×</button>
+            <button type="button" class="calculator-key" data-digit="4">4</button>
+            <button type="button" class="calculator-key" data-digit="5">5</button>
+            <button type="button" class="calculator-key" data-digit="6">6</button>
+            <button type="button" class="calculator-key operator" data-operator="−" aria-label="Subtract">−</button>
+            <button type="button" class="calculator-key" data-digit="1">1</button>
+            <button type="button" class="calculator-key" data-digit="2">2</button>
+            <button type="button" class="calculator-key" data-digit="3">3</button>
+            <button type="button" class="calculator-key operator" data-operator="+" aria-label="Add">+</button>
+            <button type="button" class="calculator-key calculator-zero" data-digit="0">0</button>
+            <button type="button" class="calculator-key" data-action="decimal">.</button>
+            <button type="button" class="calculator-key operator calculator-equals" data-action="equals" aria-label="Equals">=</button>
+          </div>
+          <p class="calculator-help">Tip: use your keyboard, or tap the buttons.</p>
+        </section>
+      </main>
+
+      <footer class="demo-footer">Built by Austin Sorreta · Supports mouse, touch, and keyboard input.</footer>
+    </div>
+
+    <script>
+      const resultDisplay = document.getElementById("calculatorResult");
+      const expressionDisplay = document.getElementById("calculatorExpression");
+      let currentInput = "0";
+      let storedValue = null;
+      let pendingOperator = null;
+      let replaceInput = false;
+
+      function formatNumber(value) {
+        if (!Number.isFinite(value)) return "Error";
+        const rounded = Number.parseFloat(value.toPrecision(11));
+        return String(rounded);
+      }
+
+      function updateDisplay() {
+        resultDisplay.textContent = currentInput;
+        expressionDisplay.textContent = pendingOperator && storedValue !== null
+          ? `${formatNumber(storedValue)} ${pendingOperator}`
+          : "";
+      }
+
+      function clearCalculator() {
+        currentInput = "0";
+        storedValue = null;
+        pendingOperator = null;
+        replaceInput = false;
+        updateDisplay();
+      }
+
+      function enterDigit(digit) {
+        if (currentInput === "Error" || replaceInput) {
+          currentInput = digit;
+          replaceInput = false;
+        } else if (currentInput.replace("-", "").length < 12) {
+          currentInput = currentInput === "0" ? digit : currentInput + digit;
+        }
+        updateDisplay();
+      }
+
+      function calculate(left, right, operator) {
+        if (operator === "+") return left + right;
+        if (operator === "−") return left - right;
+        if (operator === "×") return left * right;
+        if (operator === "÷") return right === 0 ? NaN : left / right;
+        return right;
+      }
+
+      function chooseOperator(operator) {
+        if (currentInput === "Error") clearCalculator();
+        const value = Number(currentInput);
+        if (pendingOperator && !replaceInput) {
+          storedValue = calculate(storedValue, value, pendingOperator);
+          currentInput = formatNumber(storedValue);
+        } else {
+          storedValue = value;
+        }
+        pendingOperator = operator;
+        replaceInput = true;
+        updateDisplay();
+      }
+
+      function performAction(action) {
+        if (action === "clear") {
+          clearCalculator();
+        } else if (action === "decimal") {
+          if (currentInput === "Error" || replaceInput) {
+            currentInput = "0.";
+            replaceInput = false;
+          } else if (!currentInput.includes(".")) {
+            currentInput += ".";
+          }
+          updateDisplay();
+        } else if (action === "sign" && currentInput !== "Error") {
+          currentInput = formatNumber(Number(currentInput) * -1);
+          updateDisplay();
+        } else if (action === "percent" && currentInput !== "Error") {
+          currentInput = formatNumber(Number(currentInput) / 100);
+          updateDisplay();
+        } else if (action === "equals" && pendingOperator && storedValue !== null) {
+          const result = calculate(storedValue, Number(currentInput), pendingOperator);
+          currentInput = formatNumber(result);
+          storedValue = null;
+          pendingOperator = null;
+          replaceInput = true;
+          updateDisplay();
+        }
+      }
+
+      document.getElementById("calculatorKeys").addEventListener("click", (event) => {
+        const button = event.target.closest("button");
+        if (!button) return;
+        if (button.dataset.digit !== undefined) enterDigit(button.dataset.digit);
+        else if (button.dataset.operator) chooseOperator(button.dataset.operator);
+        else if (button.dataset.action) performAction(button.dataset.action);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (/^\d$/.test(event.key)) enterDigit(event.key);
+        else if (event.key === ".") performAction("decimal");
+        else if (event.key === "Escape" || event.key.toLowerCase() === "c") performAction("clear");
+        else if (event.key === "Enter" || event.key === "=") performAction("equals");
+        else if (event.key === "+") chooseOperator("+");
+        else if (event.key === "-") chooseOperator("−");
+        else if (event.key === "*") chooseOperator("×");
+        else if (event.key === "/") {
+          event.preventDefault();
+          chooseOperator("÷");
+        }
+        else if (event.key === "%") performAction("percent");
+        else return;
+        event.preventDefault();
+      });
+
+      updateDisplay();
+    </script>
+  </body>
+</html>

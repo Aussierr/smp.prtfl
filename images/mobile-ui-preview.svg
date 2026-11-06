@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">Mobile interface concept preview</title>
+  <rect width="640" height="360" fill="#0b0b0f"/>
+  <rect x="218" y="14" width="204" height="332" rx="30" fill="#121218" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="282" y="25" width="76" height="8" rx="4" fill="#292930"/>
+  <circle cx="320" cy="85" r="31" fill="#292930"/>
+  <circle cx="320" cy="78" r="11" fill="#67c9e8"/>
+  <path d="M299 104c3-13 11-20 21-20s18 7 21 20" fill="#a78bfa"/>
+  <rect x="268" y="130" width="104" height="11" rx="5.5" fill="#f5f5f7"/>
+  <rect x="280" y="149" width="80" height="7" rx="3.5" fill="#62626f"/>
+  <rect x="238" y="177" width="164" height="47" rx="12" fill="#18181f" stroke="#292930"/>
+  <circle cx="260" cy="200" r="10" fill="#8b6be8"/>
+  <rect x="278" y="193" width="92" height="7" rx="3.5" fill="#c3c3cc"/>
+  <rect x="278" y="205" width="64" height="6" rx="3" fill="#62626f"/>
+  <rect x="238" y="234" width="164" height="47" rx="12" fill="#18181f" stroke="#292930"/>
+  <circle cx="260" cy="257" r="10" fill="#67c9e8"/>
+  <rect x="278" y="250" width="92" height="7" rx="3.5" fill="#c3c3cc"/>
+  <rect x="278" y="262" width="64" height="6" rx="3" fill="#62626f"/>
+  <rect x="259" y="297" width="122" height="24" rx="12" fill="#8b6be8"/>
+</svg>

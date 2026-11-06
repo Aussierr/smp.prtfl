@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A calendar for study sessions and project reminders, built by Austin Sorreta." />
+    <title>Calendar | Austin Sorreta</title>
+    <link rel="stylesheet" href="project-pages.css" />
+  </head>
+  <body>
+    <div class="demo-wrap">
+      <nav class="demo-nav" aria-label="Project navigation">
+        <a class="demo-brand" href="../index.html">Austin Sorreta</a>
+        <a href="../index.html#projects">Back to portfolio</a>
+      </nav>
+
+      <main class="demo-section">
+        <p class="demo-eyebrow">Built from scratch · Calendar · HTML, CSS &amp; JavaScript</p>
+        <div class="calendar-layout">
+          <section class="calendar-app" aria-label="Calendar">
+            <header class="calendar-header">
+              <div>
+                <p class="calendar-kicker">YOUR SCHEDULE, ORGANIZED</p>
+                <h1>Calendar</h1>
+              </div>
+              <div class="calendar-controls">
+                <button class="calendar-nav" id="previousMonth" type="button" aria-label="Previous month">‹</button>
+                <button class="calendar-nav" id="nextMonth" type="button" aria-label="Next month">›</button>
+              </div>
+            </header>
+
+            <div class="calendar-month-row">
+              <h2 id="monthLabel" aria-live="polite"></h2>
+              <button class="calendar-today" id="todayButton" type="button">Today</button>
+            </div>
+
+            <div class="calendar-grid calendar-weekdays" aria-hidden="true">
+              <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+              <span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div class="calendar-grid calendar-days" id="calendarDays" role="group" aria-label="Calendar dates"></div>
+          </section>
+
+          <aside class="calendar-events">
+            <p class="calendar-kicker">YOUR DAY</p>
+            <h2 id="selectedDateLabel">Select a date</h2>
+            <p class="calendar-event-intro">Classes and reminders for your selected day.</p>
+            <div id="calendarEventList" class="calendar-event-list" aria-live="polite"></div>
+          </aside>
+        </div>
+      </main>
+
+      <footer class="demo-footer">Built by Austin Sorreta · Browse months and select dates to view reminders.</footer>
+    </div>
+
+    <script>
+      const monthLabel = document.getElementById("monthLabel");
+      const daysContainer = document.getElementById("calendarDays");
+      const selectedDateLabel = document.getElementById("selectedDateLabel");
+      const eventList = document.getElementById("calendarEventList");
+      const demoToday = new Date(2026, 10, 6);
+      const monthEvents = {
+        "2026-11-10": [{ time: "10:00 AM", title: "Portfolio Feedback Circle", place: "Computer Lab" }],
+        "2026-11-12": [{ time: "1:30 PM", title: "BSIT Peer Study Session", place: "Student Center" }],
+        "2026-11-16": [{ time: "9:00 AM", title: "Database Study Session", place: "Library" }],
+        "2026-11-20": [{ time: "2:00 PM", title: "Project Check-in", place: "Room 204" }]
+      };
+      let displayedMonth = new Date(demoToday.getFullYear(), demoToday.getMonth(), 1);
+      let selectedDate = new Date(demoToday);
+
+      function dateKey(date) {
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+      }
+
+      function renderSelectedDate() {
+        selectedDateLabel.textContent = new Intl.DateTimeFormat("en", {
+          weekday: "long",
+          month: "long",
+          day: "numeric"
+        }).format(selectedDate);
+        eventList.replaceChildren();
+
+        const events = monthEvents[dateKey(selectedDate)] || [];
+        if (events.length === 0) {
+          const empty = document.createElement("p");
+          empty.className = "calendar-no-events";
+          empty.textContent = "No events scheduled. Enjoy a little free time.";
+          eventList.append(empty);
+          return;
+        }
+
+        events.forEach((event) => {
+          const card = document.createElement("article");
+          card.className = "calendar-event-card";
+          const time = document.createElement("span");
+          time.className = "calendar-event-time";
+          time.textContent = event.time;
+          const title = document.createElement("strong");
+          title.textContent = event.title;
+          const place = document.createElement("span");
+          place.className = "calendar-event-place";
+          place.textContent = event.place;
+          card.append(time, title, place);
+          eventList.append(card);
+        });
+      }
+
+      function renderCalendar() {
+        monthLabel.textContent = new Intl.DateTimeFormat("en", {
+          month: "long",
+          year: "numeric"
+        }).format(displayedMonth);
+        daysContainer.replaceChildren();
+
+        const monthStart = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth(), 1);
+        const firstVisibleDate = new Date(
+          monthStart.getFullYear(),
+          monthStart.getMonth(),
+          1 - monthStart.getDay()
+        );
+
+        for (let index = 0; index < 42; index += 1) {
+          const date = new Date(firstVisibleDate);
+          date.setDate(firstVisibleDate.getDate() + index);
+          const key = dateKey(date);
+          const dayButton = document.createElement("button");
+          dayButton.type = "button";
+          dayButton.className = "calendar-day";
+          dayButton.textContent = String(date.getDate());
+          dayButton.setAttribute("aria-label", new Intl.DateTimeFormat("en", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+          }).format(date));
+          dayButton.setAttribute("aria-pressed", String(key === dateKey(selectedDate)));
+
+          if (date.getMonth() !== displayedMonth.getMonth()) dayButton.classList.add("outside-month");
+          if (key === dateKey(demoToday)) dayButton.classList.add("is-today");
+          if (monthEvents[key]) dayButton.classList.add("has-event");
+
+          dayButton.addEventListener("click", () => {
+            selectedDate = date;
+            if (date.getMonth() !== displayedMonth.getMonth()) {
+              displayedMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+            }
+            renderCalendar();
+            renderSelectedDate();
+          });
+          daysContainer.append(dayButton);
+        }
+        renderSelectedDate();
+      }
+
+      function changeMonth(offset) {
+        displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + offset, 1);
+        const lastDay = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 0).getDate();
+        selectedDate = new Date(
+          displayedMonth.getFullYear(),
+          displayedMonth.getMonth(),
+          Math.min(selectedDate.getDate(), lastDay)
+        );
+        renderCalendar();
+      }
+
+      document.getElementById("previousMonth").addEventListener("click", () => {
+        changeMonth(-1);
+      });
+      document.getElementById("nextMonth").addEventListener("click", () => {
+        changeMonth(1);
+      });
+      document.getElementById("todayButton").addEventListener("click", () => {
+        displayedMonth = new Date(demoToday.getFullYear(), demoToday.getMonth(), 1);
+        selectedDate = new Date(demoToday);
+        renderCalendar();
+      });
+
+      renderCalendar();
+    </script>
+  </body>
+</html>

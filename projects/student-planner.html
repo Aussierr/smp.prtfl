@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A student schedule and assignment planner built by Austin Sorreta." />
+    <title>Student Planner | Austin Sorreta</title>
+    <link rel="stylesheet" href="project-pages.css" />
+  </head>
+  <body>
+    <div class="demo-wrap">
+      <nav class="demo-nav" aria-label="Project navigation">
+        <a class="demo-brand" href="../index.html">Austin Sorreta</a>
+        <a href="../index.html#projects">Back to portfolio</a>
+      </nav>
+
+      <main class="demo-section">
+        <p class="demo-eyebrow">Built from scratch · Student Planner · HTML, CSS &amp; JavaScript</p>
+        <div class="planner-app">
+          <aside class="planner-sidebar">
+            <a class="planner-logo" href="../index.html"><span>✦</span> Studyspace</a>
+            <p class="planner-side-label">WORKSPACE</p>
+            <a class="planner-side-link active" href="#scheduleTitle"><span>▦</span> My schedule</a>
+            <a class="planner-side-link" href="#assignmentTitle"><span>✓</span> Assignments</a>
+            <div class="planner-sidebar-note">
+              <span class="planner-note-icon">✦</span>
+              <strong>Keep it steady</strong>
+              <span>Small steps add up.</span>
+            </div>
+          </aside>
+          <div class="planner-main">
+            <div class="planner-heading">
+              <div><p class="planner-date">MY BSIT WORKSPACE</p><h1>My study planner</h1></div>
+              <span class="planner-user">AS <span>Austin</span></span>
+            </div>
+            <p class="planner-subtitle">A little structure goes a long way. Here's your day.</p>
+            <div class="planner-stats" aria-label="Study overview">
+              <div><span>Today's classes</span><strong>3 <small>classes</small></strong></div>
+              <div><span>Open assignments</span><strong id="openAssignmentCount">2 <small>to do</small></strong></div>
+              <div><span>Study streak</span><strong>4 <small>days</small></strong></div>
+            </div>
+            <div class="planner-week" aria-label="Selected day of the week">
+              <span>MON <b>02</b></span><span>TUE <b>03</b></span><span>WED <b>04</b></span>
+              <span>THU <b>05</b></span><span class="selected">FRI <b>06</b></span>
+              <span>SAT <b>07</b></span><span>SUN <b>08</b></span>
+            </div>
+
+            <div class="planner-layout">
+              <section class="planner-panel" aria-labelledby="scheduleTitle">
+                <h2 id="scheduleTitle">Friday schedule</h2>
+                <div class="schedule-item">
+                  <span class="schedule-time">8:00 AM</span>
+                  <div><strong>Web Development</strong><p>Room 204 · Lecture</p></div>
+                </div>
+                <div class="schedule-item">
+                  <span class="schedule-time">10:00 AM</span>
+                  <div><strong>Database Management</strong><p>Computer Lab · Activity</p></div>
+                </div>
+                <div class="schedule-item">
+                  <span class="schedule-time">1:00 PM</span>
+                  <div><strong>Object-Oriented Programming</strong><p>Room 301 · Lecture</p></div>
+                </div>
+              </section>
+
+              <section class="planner-panel" aria-labelledby="assignmentTitle">
+                <h2 id="assignmentTitle">Assignment tracker</h2>
+                <form class="assignment-form" id="assignmentForm">
+                  <label for="assignmentName">Add an assignment</label>
+                  <input id="assignmentName" name="assignment" type="text" maxlength="80" placeholder="e.g. Build a web page" required />
+                  <label for="assignmentDue">Due date</label>
+                  <input id="assignmentDue" name="due" type="date" required />
+                  <button class="demo-button demo-button-primary" type="submit">Add task</button>
+                </form>
+                <ul class="task-list" id="taskList" aria-label="Assignments"></ul>
+                <p class="planner-status" id="plannerStatus" role="status" aria-live="polite"></p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="demo-footer">Built by Austin Sorreta · Add assignments and mark them complete.</footer>
+    </div>
+
+    <script>
+      const storageKey = "austin-studyspace-tasks-v1";
+      const starterTasks = [
+        { id: "task-web", name: "Finalize Campus Connect interface", due: "2026-11-10", done: false },
+        { id: "task-db", name: "Practice database relationships", due: "2026-11-12", done: false },
+        { id: "task-ux", name: "Review responsive portfolio layout", due: "2026-11-14", done: true }
+      ];
+      const taskList = document.getElementById("taskList");
+      const form = document.getElementById("assignmentForm");
+      const status = document.getElementById("plannerStatus");
+      let tasks = starterTasks;
+
+      try {
+        const savedTasks = localStorage.getItem(storageKey);
+        if (savedTasks) {
+          const parsedTasks = JSON.parse(savedTasks);
+          if (Array.isArray(parsedTasks) && parsedTasks.every((task) =>
+            task && typeof task.id === "string" && typeof task.name === "string" &&
+            typeof task.due === "string" && typeof task.done === "boolean"
+          )) {
+            tasks = parsedTasks;
+          }
+        }
+      } catch (error) {
+        console.error("Unable to load saved planner tasks.", error);
+        status.textContent = "Could not load saved tasks; showing the starter assignments.";
+      }
+
+      function saveTasks() {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(tasks));
+        } catch (error) {
+          console.error("Unable to save planner tasks.", error);
+          status.textContent = "Changes are visible, but could not be saved in this browser.";
+        }
+      }
+
+      function renderTasks() {
+        taskList.replaceChildren();
+        const openTasks = tasks.filter((task) => !task.done).length;
+        document.getElementById("openAssignmentCount").innerHTML =
+          `${openTasks} <small>to do</small>`;
+        tasks.forEach((task) => {
+          const item = document.createElement("li");
+          item.className = `task-item${task.done ? " task-done" : ""}`;
+
+          const label = document.createElement("label");
+          label.className = "task-label";
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = task.done;
+          checkbox.setAttribute("aria-label", `Mark ${task.name} complete`);
+          checkbox.addEventListener("change", () => {
+            task.done = checkbox.checked;
+            saveTasks();
+            renderTasks();
+          });
+
+          const taskText = document.createElement("span");
+          taskText.className = "task-name";
+          taskText.textContent = task.name;
+          const dueText = document.createElement("span");
+          dueText.className = "task-due";
+          dueText.textContent = `Due ${task.due}`;
+          taskText.append(dueText);
+          label.append(checkbox, taskText);
+
+          const removeButton = document.createElement("button");
+          removeButton.className = "task-delete";
+          removeButton.type = "button";
+          removeButton.textContent = "Remove";
+          removeButton.setAttribute("aria-label", `Remove ${task.name}`);
+          removeButton.addEventListener("click", () => {
+            tasks = tasks.filter((entry) => entry.id !== task.id);
+            saveTasks();
+            renderTasks();
+            status.textContent = "Assignment removed.";
+          });
+
+          item.append(label, removeButton);
+          taskList.append(item);
+        });
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const name = String(formData.get("assignment") || "").trim();
+        const due = String(formData.get("due") || "");
+        if (!name || !due) {
+          status.textContent = "Enter an assignment name and due date.";
+          return;
+        }
+
+        tasks.push({ id: `task-${Date.now()}`, name, due, done: false });
+        saveTasks();
+        renderTasks();
+        form.reset();
+        status.textContent = "Assignment added.";
+        document.getElementById("assignmentName").focus();
+      });
+
+      renderTasks();
+    </script>
+  </body>
+</html>
